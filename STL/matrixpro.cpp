@@ -36,21 +36,20 @@ int main() {
     // Remove rows whose sum > X
     for (auto it = matrix.begin(); it != matrix.end(); ) {
         int row_sum = 0;
-        for (auto val : *it) row_sum += val;
-
-        if (row_sum > X) {
-            it = matrix.erase(it);
-        } else {
+        for(auto val:*it) row_sum+=val;
+        if(row_sum>X){
+            it=matrix.erase(it);
+        }
+        else{
             ++it;
         }
     }
-
-    // Remove elements that are multiples of Y
-    for (auto& row : matrix) {  // Use & to modify the row directly
-        for (auto it = row.begin(); it != row.end(); ) {
-            if (*it % Y == 0) {
-                it = row.erase(it);
-            } else {
+    for(auto& row:matrix){
+        for(auto it=row.begin();it!=row.end();){
+            if(*it%Y==0){
+                it=row.erase(it);
+            }
+            else{
                 ++it;
             }
         }
