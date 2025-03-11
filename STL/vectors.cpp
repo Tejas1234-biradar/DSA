@@ -21,7 +21,5 @@ int main(){
     cout<<"\ncapacity after pop"<<v.capacity();
     v.clear();
     cout<<"\nsize after clear"<<v.size();
-    cout<<"\ncapacity after clear"<<v.capacity();
-    
-    
+    cout<<"\ncapacity after clear"<<v.capacity();        
 }
