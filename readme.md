@@ -53,18 +53,88 @@ Space complexity refers to **the extra space (auxiliary space)** an algorithm re
 
 ---
 
-## 🚀 What’s Next?
-✔ Time and Space Complexity  
-🔜 Arrays and Strings  
-🔜 Linked Lists  
-🔜 Stacks and Queues  
-🔜 Trees and Graphs  
-🔜 Recursion and Backtracking  
-🔜 Dynamic Programming  
-🔜 Advanced Problem Solving
+## 📌 Topics Covered
+
+### ✅ Hashing
+- **What is Hashing?**  
+  A technique to convert a range of key values into a range of indexes in an array.
+  
+- **Use Cases**  
+  - Efficient search, insert, and delete in constant time O(1) (on average).
+  - Detecting duplicates, counting frequency, etc.
+
+- **Common Implementations**  
+  - Hash Tables  
+  - Hash Maps (C++ `unordered_map`, Java `HashMap`)
+
+- **Examples**  
+  - Find frequency of elements in an array.  
+  - Check if a subarray with zero sum exists.
 
 ---
 
+### ✅ Recursion (Basics)
+- **What is Recursion?**  
+  A function calling itself to solve smaller instances of the same problem.
+  
+- **Key Points**  
+  - Base Case (stopping condition)  
+  - Recursive Case (breaking the problem into subproblems)
+  
+- **Common Examples**  
+  - Factorial of a number  
+  - Fibonacci numbers  
+  - Power of a number
+  
+- **Time Complexity**  
+  - Depends on the number of calls. E.g., Fibonacci (without memoization) → O(2^N)
+
+---
+
+### ✅ Sorting Algorithms
+
+#### 🫧 Bubble Sort
+- **Algorithm**: Repeatedly compare adjacent elements and swap if they are in the wrong order.
+- **Time Complexity**:  
+  - Best: O(N) (when already sorted with optimized version using a `flag`)  
+  - Average/Worst: O(N²)  
+- **Space Complexity**: O(1)  
+- **Stable**: Yes  
+- **In-place**: Yes  
+
+#### ⬇️ Insertion Sort
+- **Algorithm**: Pick an element and insert it into its correct position in the sorted part of the array.
+- **Time Complexity**:  
+  - Best: O(N)  
+  - Average/Worst: O(N²)  
+- **Space Complexity**: O(1)  
+- **Stable**: Yes  
+- **In-place**: Yes  
+
+#### ✅ Selection Sort
+- **Algorithm**: Find the minimum (or maximum) element and swap it with the first unsorted element.
+- **Time Complexity**:  
+  - Best/Average/Worst: O(N²)  
+- **Space Complexity**: O(1)  
+- **Stable**: No  
+- **In-place**: Yes  
+
+---
+
+## 🚀 What’s Next?
+
+| ✅ | Time and Space Complexity |
+|-----|--------------------------|
+| ✅ | Hashing |
+| ✅ | Basic Recursion |
+| ✅ | Sorting: Bubble, Insertion, Selection |
+| 🔜 | Arrays and Strings |
+| 🔜 | Linked Lists |
+| 🔜 | Stacks and Queues |
+| 🔜 | Trees and Graphs |
+| 🔜 | Recursion and Backtracking |
+| 🔜 | Dynamic Programming |
+| 🔜 | Advanced Problem Solving |
 
 ---
 
@@ -76,6 +146,7 @@ This is a **personal learning log**, but if you have suggestions or improvements
 
 ---
 
-
 ## ⭐️ Star This Repo  
 If you find these notes useful, please ⭐️ star the repo to support and stay updated!
+
+---
