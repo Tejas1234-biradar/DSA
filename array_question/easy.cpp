@@ -112,6 +112,70 @@ int duplicateElements(int arr[], int size) {
     }
 
     return i + 1; // Number of unique elements in the sorted array
+}//brute forceO(n^2)
+//void rotateLeftbyonePlace(int &arr[],int size){
+//    for (int i = size - 1; i >=0; i--) {
+//        swap(arr[i],arr[i-1]);//wrong approach less optimal 
+//    }
+//}
+//optimal O(n)
+void rotateLeftbyonePlace(int arr[], int size){
+    int temp=arr[0];
+    for(int i=0;i<size-1;i++){//i<size-1 should be the same thing ya? nope its different i<size-1 runs till size-2 and i<=runs till size
+        arr[i]=arr[i+1];
+    }
+    arr[size-1]=temp;
+    for(int i=0;i<size;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
+//void rotateByKplaces(int arr[],int k,int size){
+//    if(size==0)return;
+//    k=k%size;
+//    for(int rotation=0;rotation<k;rotation++){
+//        int temp=arr[0];
+//        //we rotate for each iterations? ig nope still not clicking .
+//        for(int i=0;i<size-1;i++){
+//            arr[i]=arr[i+1];//try a dry run taking rotation =0 we rotated everything once then second time then k times ohhh so we keep rotating k times but does that shift the element by k places such a huge workaround
+//        }
+//        arr[size-1]=temp;
+//    }
+//
+//}
+//optimal solution two pointer approach
+void reverse(int arr[],int start,int end){
+    while(start<end){
+        swap(arr[start],arr[end]);
+        start++;
+        end--;
+    }
+}
+void rotateByKplaces(int arr[],int k,int size){
+    if(k==0||size==0) return;//k=2;
+    k=k%size;//arr[2,5,6,7,9] expected answer arr[6,7,9,2,5]
+    reverse(arr,0,k-1);//here we reverse from 0 to k-1 //from index 0 to 1 so arr[5,2,6,7,9]
+    reverse(arr,k,size-1);//here from index 2 to size-1 so arr[5,2,9,7,6]
+    reverse(arr,0,size-1);//here from 0 to size -1 arr[6,7,9,2,5]
+}
+//brute force 
+void moveZeroestoEnd(int arr[],int size){
+    //they didnt say anything about maintaing the order so we just dont
+     int cnt=0;
+    int i=0;
+while(i<size-cnt){
+        if(arr[i]==0){
+        swap(arr[i],arr[size-cnt-1]);
+        cnt++;
+        }
+        else{
+            i++;//only increase i after checking its not a moveZeroestoEnd
+        }
+    }
+for(int i=0;i<size;i++){
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
 }
 
     
@@ -123,4 +187,5 @@ int main(){
     secondLargestNumber(arr,size);
     isSorted(arr,size);
     cout<<duplicateElements(arr,size)<<endl;
-}
+    rotateLeftbyonePlace(arr,size);
+}   
