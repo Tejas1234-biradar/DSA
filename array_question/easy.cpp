@@ -133,7 +133,10 @@ void rotateLeftbyonePlace(int arr[], int size){
 void linearSearch(int arr[],int size,int k){
     int index=0;
     for(int i=0;i<size;i++){
-        if(arr[i]==k) index=i;
+        if(arr[i]==k){
+            index=i;
+            break;
+        }
         else{
             cout<<"element not in the array please confirm"<<endl;
         }
@@ -194,14 +197,13 @@ void moveZeroestoEnd(int arr[],int size){
         if(arr[i]==0) j=i;
         break;
         }
-    for(i=j+1;i<size;i++){
+    for(int i=j+1;i<size;i++){
         if(arr[i]!=0){
             swap(arr[j],arr[i]);
             j++;
         }
     }
     }
-}
 //brute force approach using sets to not take duplicate elements
 //void findUnion(int arr1[],int arr2[],int size1,int size2){
 //set<int> st;//define a set here
@@ -221,34 +223,34 @@ void findUnion(int arr1[],int arr2[],int size1,int size2){
     int i=0;
     int j=0;
     while(i<size1&&j<size2){
-        if(i>0&&arr[i]==arr[i-1]){
+        if(i>0&&arr1[i]==arr1[i-1]){
             i++;
             continue;
         }
-        if(j>0 &&arr[j]==arr[j-1]){
+        if(j>0 &&arr2[j]==arr2[j-1]){
             j++;
             continue;
         }
-        if(arr[j]<arr[i]){
-            cout<<arr[j]<<" ";
+        if(arr2[j]<arr1[i]){
+            cout<<arr2[j]<<" ";
             j++;
         }
-        if(arr[i]<arr[j]){
-            cout<<arr[i]<<" ";//i dont understand why we print arr[i] here? since the arrays are sorted we checked whether arr[i]<arr[j] then we push them in a aray    
+        if(arr2[i]<arr1[j]){
+            cout<<arr1[i]<<" ";//i dont understand why we print arr[i] here? since the arrays are sorted we checked whether arr[i]<arr[j] then we push them in a aray    
             i++;
             //its okay to start from j=0 becuase we are doing j++ but what if the condition does not apply and here i comes as 0 sorry i cheated here a bit but the condition i>0 is not applicble here and we dont compare consecutive elements we only compare elements from different arrays
     }
-        if(arr[i]==arr[j]){
-        cout<<arr[i]<<" ";//printed elements from arr1 arr2 and took care of duplicates ig i am done then?
+        if(arr1[i]==arr2[j]){
+        cout<<arr1[i]<<" ";//printed elements from arr1 arr2 and took care of duplicates ig i am done then?
     }
 
 }
     while(i<size1){
-        if(i==0||arr[i]!=arr[i-1])cout<<arr[i]<<" "//would it not print reduntant elements oh right we changed the i anyways makes sense why we used a while loop then 
+        if(i==0||arr1[i]!=arr1[i-1])cout<<arr1[i]<<" ";//would it not print reduntant elements oh right we changed the i anyways makes sense why we used a while loop then 
         i++;
     }
     while(j<size2){
-        if(j==0||arr[j]!=arr[j-1])cout<<arr[j]<<" ";
+        if(j==0||arr2[j]!=arr2[j-1])cout<<arr2[j]<<" ";
         j++;
     }
     
@@ -258,39 +260,100 @@ void findIntersection(int arr1[],int arr2[],int size1,int size2){
     int i=0;
     int j=0;
     while(i<size1&&j<size2){
-        if(i>0&&arr[i]==arr[i-1]){
+        if(i>0&&arr1[i]==arr1[i-1]){
             i++;
             continue;
         }
-    if(arr[i]<arr[j]){
+    if(arr1[i]<arr2[j]){
             i++;
         } 
-     else if(arr[i]>arr[j]){
+     else if(arr1[i]>arr2[j]){
             j++;
         }
         else{
-            cout<<arr[i]<<" ";
+            cout<<arr1[i]<<" ";
             i++;
-            j++:
+            j++;
         }
     }
     
 }
 //brute forceO
-void findMissingelement(int arr[],int size){
-    int flag=0;
-    for(int i=0;i<size;i++){
-        for(int j=0;j<size;j++){
-            if(arr[j]==i){ 
-                flag=1;
-                cout<<j<<" ";
-                break;
-            }
-        }
+//void findMissingelement(int arr[],int size){
+//    int flag=0;
+//    for(int i=0;i<size;i++){
+//        for(int j=0;j<size;j++){
+//            if(arr[j]==i){ 
+//                flag=1;
+//                cout<<j<<" ";
+//                break;
+//            }
+//        }
+//    }
+//}
+//optimal approacth using sum method
+//void findMissingelement(int arr[],int size){
+//    int sum=0;
+//    int n=size+1;
+//    int totalSum=(n*(n+1))/2;
+//    for(int i=0;i<size;i++){
+//        sum+=arr[i];
+//    }
+//    int miss=totalSum-sum;
+//    cout<<"The missing element is ->"<<miss<<endl;
+//}
+//optimal solution using xor method;
+void findMissingelement(int arr[],int size)
+{
+    int xor1=0;
+    int xor2=0;
+    for(int i =0;i<size+1;i++){
+        xor1=xor1^i;
     }
+    for(int i=0;i<size;i++){
+        xor2=xor2^arr[i];
+    }
+    int miss=xor1^xor2;
+    cout<<"the missing number is ->"<<miss<<" ";
+
 }
+void findingNumbeThatappearsonce(int arr[],int size)
+{
+    int ans=0;
+    for(int i=0;i<size;i++){
+        ans^=arr[i]
+    }
+    cout<<ans<<"is the number that appears once"<<" ";
+}
+
+//better approach using hashing
+//void findMissingelement(int arr[],int size){
+//    int hash[size+1]={0};
+//    for(int i=0;i<size;i++){
+//        hash[arr[i]]=1;
+//    }
+//    for (int i = 0; i < size+1; i++) {
+//        if(hash[i]==0) {
+//            cout<<"the missing element is ->"<<i<<" ";
+//        }
+//    }
+//}
+//int maximumconsecutive1(int arr[],int size){
+//    int cnt=0;
+//    for(int i=0;i<size-1;i++){
+//        if(arr[i]==1&&arr[i+1]==1){
+//            cnt++;//wrong because this will print pairs and not maximum consecutive 1s
+//        }
+//    }
+//
+//    return cnt;
+//}
+//correct approach
+
 int main(){
     int arr[]={12,44,51,1,200,9999,0};
+    int arr2[]={1,2,3,5,6};
+    int size2=sizeof(arr2)/sizeof(arr2[0]);
     int size=sizeof(arr)/sizeof(arr[0]);
     largestNumber(arr,size);
     secondLargestNumber(arr,size);
@@ -298,5 +361,6 @@ int main(){
     cout<<duplicateElements(arr,size)<<endl;
     rotateLeftbyonePlace(arr,size);
     linearSearch(arr,size,51);
+    findMissingelement(arr2,size2);
     
 }   
