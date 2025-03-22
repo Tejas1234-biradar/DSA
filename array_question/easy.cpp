@@ -130,6 +130,16 @@ void rotateLeftbyonePlace(int arr[], int size){
     }
     cout<<endl;
 }
+void linearSearch(int arr[],int size,int k){
+    int index=0;
+    for(int i=0;i<size;i++){
+        if(arr[i]==k) index=i;
+        else{
+            cout<<"element not in the array please confirm"<<endl;
+        }
+    }
+    cout<<"The element ->"<<k<<"is at index->"<<index+1<<endl;
+}
 //void rotateByKplaces(int arr[],int k,int size){
 //    if(size==0)return;
 //    k=k%size;
@@ -159,27 +169,126 @@ void rotateByKplaces(int arr[],int k,int size){
     reverse(arr,0,size-1);//here from 0 to size -1 arr[6,7,9,2,5]
 }
 //brute force 
+//void moveZeroestoEnd(int arr[],int size){
+//    //they didnt say anything about maintaing the order so we just dont
+//     int cnt=0;
+//    int i=0;
+//while(i<size-cnt){
+//        if(arr[i]==0){
+//        swap(arr[i],arr[size-cnt-1]);
+//        cnt++;
+//        }
+//        else{
+//            i++;//only increase i after checking its not a moveZeroestoEnd
+//        }
+//    }
+//for(int i=0;i<size;i++){
+//        cout<<arr[i]<<" ";
+//    }
+//    cout<<endl;
+//}
+//optimalapproach
 void moveZeroestoEnd(int arr[],int size){
-    //they didnt say anything about maintaing the order so we just dont
-     int cnt=0;
+    int j=-1;
+    for(int i=0;i<size;i++){
+        if(arr[i]==0) j=i;
+        break;
+        }
+    for(i=j+1;i<size;i++){
+        if(arr[i]!=0){
+            swap(arr[j],arr[i]);
+            j++;
+        }
+    }
+    }
+}
+//brute force approach using sets to not take duplicate elements
+//void findUnion(int arr1[],int arr2[],int size1,int size2){
+//set<int> st;//define a set here
+//    for(int i=0;i<size1;i++){
+//        st.insert(arr1[i]);//set insert if the array has duplicates set does not accept
+//    }
+//    for(int i=0;i<size2;i++){
+//        st.insert(arr2[i]);//only takes unique elements which are not already in set
+//  }
+//    for(auto val:st){
+//        cout<<val<<" ";//printing the set
+//    }
+//    cout<<endl;
+//}//brute force because adding in set is O(n) complexiy + 3 loops so O(nlogn+mlogm)complexity
+//optimalapproach using two pointer method O(n)
+void findUnion(int arr1[],int arr2[],int size1,int size2){
     int i=0;
-while(i<size-cnt){
-        if(arr[i]==0){
-        swap(arr[i],arr[size-cnt-1]);
-        cnt++;
+    int j=0;
+    while(i<size1&&j<size2){
+        if(i>0&&arr[i]==arr[i-1]){
+            i++;
+            continue;
+        }
+        if(j>0 &&arr[j]==arr[j-1]){
+            j++;
+            continue;
+        }
+        if(arr[j]<arr[i]){
+            cout<<arr[j]<<" ";
+            j++;
+        }
+        if(arr[i]<arr[j]){
+            cout<<arr[i]<<" ";//i dont understand why we print arr[i] here? since the arrays are sorted we checked whether arr[i]<arr[j] then we push them in a aray    
+            i++;
+            //its okay to start from j=0 becuase we are doing j++ but what if the condition does not apply and here i comes as 0 sorry i cheated here a bit but the condition i>0 is not applicble here and we dont compare consecutive elements we only compare elements from different arrays
+    }
+        if(arr[i]==arr[j]){
+        cout<<arr[i]<<" ";//printed elements from arr1 arr2 and took care of duplicates ig i am done then?
+    }
+
+}
+    while(i<size1){
+        if(i==0||arr[i]!=arr[i-1])cout<<arr[i]<<" "//would it not print reduntant elements oh right we changed the i anyways makes sense why we used a while loop then 
+        i++;
+    }
+    while(j<size2){
+        if(j==0||arr[j]!=arr[j-1])cout<<arr[j]<<" ";
+        j++;
+    }
+    
+}
+//direct optimal approach cant think of the brute one yet since two pointers ==optimal ig not? we never know 
+void findIntersection(int arr1[],int arr2[],int size1,int size2){
+    int i=0;
+    int j=0;
+    while(i<size1&&j<size2){
+        if(i>0&&arr[i]==arr[i-1]){
+            i++;
+            continue;
+        }
+    if(arr[i]<arr[j]){
+            i++;
+        } 
+     else if(arr[i]>arr[j]){
+            j++;
         }
         else{
-            i++;//only increase i after checking its not a moveZeroestoEnd
+            cout<<arr[i]<<" ";
+            i++;
+            j++:
         }
     }
-for(int i=0;i<size;i++){
-        cout<<arr[i]<<" ";
-    }
-    cout<<endl;
-}
-
     
-
+}
+//brute forceO
+void findMissingelement(int arr[],int size){
+    int flag=0;
+    for(int i=0;i<size;i++){
+        for(int j=0;j<size;j++){
+            if(arr[j]==i){ 
+                flag=1;
+                cout<<j<<" ";
+                break;
+            }
+        }
+    }
+}
 int main(){
     int arr[]={12,44,51,1,200,9999,0};
     int size=sizeof(arr)/sizeof(arr[0]);
@@ -188,4 +297,6 @@ int main(){
     isSorted(arr,size);
     cout<<duplicateElements(arr,size)<<endl;
     rotateLeftbyonePlace(arr,size);
+    linearSearch(arr,size,51);
+    
 }   
