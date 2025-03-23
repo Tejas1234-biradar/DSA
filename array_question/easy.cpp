@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 #include<set>
 using namespace std;
 void largestNumber(int arr[],int size){
@@ -317,14 +318,29 @@ void findMissingelement(int arr[],int size)
     cout<<"the missing number is ->"<<miss<<" ";
 
 }
+// int  findingNumbeThatappearsonce(int arr[],int size){
+//     int maxi;
+//     for(int i=0;i<size;i++){
+//         if(arr[i]>maxi) maxi=arr[i];
+//     }
+//     int hash[maxi+2]={0};
+//     for(int i=0;i<size;i++){
+//         hash[arr[i]]++;
+//     }
+//     for(int i=1;i<maxi+2;i++){
+//         if(hash[i]==1) return i;
+//     }
+// }
+//optimal approach best approach just o(n)
 void findingNumbeThatappearsonce(int arr[],int size)
 {
     int ans=0;
     for(int i=0;i<size;i++){
-        ans^=arr[i]
+        ans^=arr[i];
     }
     cout<<ans<<"is the number that appears once"<<" ";
 }
+
 
 //better approach using hashing
 //void findMissingelement(int arr[],int size){
@@ -349,21 +365,81 @@ void findingNumbeThatappearsonce(int arr[],int size)
 //    return cnt;
 //}
 //better approacth
-int maximumConsecutive1(int arr[],int size){
-int hash[size+1]={0};
-    for(int i=0;i<size;i++){
-        hash[arr[i]]++;
-    }
-    for(int i=0;i<size+1;i++){
-        if(hash[i]==1){
-            return i;
+//int maximumConsecutive1(int arr[],int size){
+//    int maxi=0;
+//    for(int i=0;i<size;i++){
+//        if(arr[i]>maxi) maxi=arr[i];
+//    }
+//    int hash[maxi+2]={0};
+//    for(int i=0;i<size;i++){
+//        if(arr[i]>=0){
+//        hash[arr[i]]++;
+//    }
+//    }
+//
+//    int cnt=0;
+//    for(int i=0;i<=maxi;i++){
+//        if(hash[i]>0){
+//            cnt++;//we just checked whether the numbers are repeating
+//
+//        }else break;
+//    }
+//    return cnt;
+//}
+//wrong approach
+/*
+void longestSubarayofsumK(vector<int> arr, int k) {
+    
+    vector<int> temp; // ❗️ Created temp to store the subarray, but never populated it.
+
+    int size = arr.size();
+
+    // ❗️ Tried to sort the array. Subarrays need original order; sorting breaks contiguity.
+    int min = -1;
+
+    for (int i = size - 1; i >= 0; i--) {        
+        for (int j = 0; j < i; j++) {            
+            if (arr[j] > arr[j + 1]) 
+                swap(arr[j], arr[j + 1]);  // ❗️ Bubble sort correct but unnecessary here.
         }
-        else{
-            return 0;
+    }
+
+    int index = 0;       // ❗️ Attempted to track index of last valid element
+    int sum = 0;         // ✅ Correctly initialized sum.
+
+    // ❗️ Problematic while loop; stuck at arr[i] instead of moving forward.
+    for (int i = 0; i < size; i++) {   
+        while (sum <= k) {             
+            sum = sum + arr[i];        // ❗️ Keeps adding arr[i], no movement in i inside the while.
+            if (sum == k) index = i;   // ✅ Correct condition, but broken flow above.
         }
     }
+
+    // ❗️ Wrong copy logic. temp is empty. Should push_back while processing earlier.
+    for (int i = 0; i <= index; i++) {
+        arr[i] = temp[i];            
+    }
+
+    return temp.length();  // ❗️ Wrong syntax. Should be temp.size().
 }
-//correct approach
+*/
+//brute force approach
+int longestSubarayofsumK(vector<int> arr,int k){
+    //genrate sub arrays using two pointertechniqu
+    int n=arr.size();
+    int sum=0;
+    int len=0;
+        for(int i=0;i<n;i++){
+        sum=0;
+        for(int j=i;j<n;j++){
+            sum+=arr[j];
+        if(sum==17) len=max(len,j-i+1);//if the sum is 17 we store the length of array;
+        }
+    }
+    return len;
+}
+
+
 int maximumConsecutive1(int arr[], int size) {
 int cnt = 0; // Current count of 1's
 int maxCnt = 0; // Max count found so far
