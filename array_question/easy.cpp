@@ -348,7 +348,39 @@ void findingNumbeThatappearsonce(int arr[],int size)
 //
 //    return cnt;
 //}
+//better approacth
+int maximumConsecutive1(int arr[],int size){
+int hash[size+1]={0};
+    for(int i=0;i<size;i++){
+        hash[arr[i]]++;
+    }
+    for(int i=0;i<size+1;i++){
+        if(hash[i]==1){
+            return i;
+        }
+        else{
+            return 0;
+        }
+    }
+}
 //correct approach
+int maximumConsecutive1(int arr[], int size) {
+int cnt = 0; // Current count of 1's
+int maxCnt = 0; // Max count found so far
+
+for (int i = 0; i < size; i++) {
+    if (arr[i] == 1) {
+        cnt++;                    // Increment current streak
+        if (cnt > maxCnt) {
+            maxCnt = cnt;         // Update max if needed
+        }
+    } else {
+        cnt = 0;                  // Reset current streak if not 1
+    }
+}
+
+return maxCnt;
+}
 
 int main(){
     int arr[]={12,44,51,1,200,9999,0};
