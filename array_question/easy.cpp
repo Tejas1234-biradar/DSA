@@ -458,21 +458,45 @@ for (int i = 0; i < size; i++) {
 
 return maxCnt;
 }
-int longestSubarayofsumK(vector<int> a,long long k){
-map<long long ,int> preSumMap;
-int maxLen=0;
-for (int i = 0; i < a.size(); i++) {
-    sum+=a[i];
-    if(sum==k){
-            maxLen=max(maxLen,i+1);//how is this the max? so we checkif the whole arrays adds up to k 
+//int longestSubarayofsumK(vector<int> a,long long k){
+//map<long long ,int> preSumMap;
+//    int sum=0;
+//int maxLen=0;
+//for (int i = 0; i < a.size(); i++) {
+//    sum+=a[i];
+//    if(sum==k){
+//            maxLen=max(maxLen,i+1);//how is this the max? so we checkif the whole arrays adds up to k 
+//        }
+//       if(preSumMap.find(rem)!=preSumMap.end()){
+//        int len=i-preSumMap[rem];
+//        maxLen=max(maxLen,len);
+//    }
+//        preSumMap[sum]=i;
+//    }
+//    return maxLen;
+//}
+int longestSubarayofsumK(vector<int> a,long long k){//works on both negatives and positives
+    map<long long int, int> preSumMap;
+    int sum=0;
+    int maxLen=0;
+    for (int i = 0; i < a.size(); i++) {
+        sum+=a[i];
+        if(sum==k){
+            maxLen=max(maxlen,i+1);//we check whether the max lenght of the subarray addition is greater than the current index+1 viz size of current subaary if yes thts new max len
+                }   //now this completes our checking for all the subarrays which are from starting in order to consider the middle subarrays we do reverse maths using rem
+
+            long long rem=sum-k;//if a sum does exist DO NOT REUPDATE THAAT            
+            if(preSumMap.find(rem)!=preSumMap.end()){
+                int len=i-preSumMap[rem];//if there is no remainder then add one?
+                maxLen=max(maxlen,len);//if the rem==sum-k then check the len if its greater then thats the new maxLen;
+                
+            }
+        if(preSumMap.find(sum==preSumMap.end()){//when dealing with an edge case like [2,0,0,3]k=I3
+            preSumMap[sum]=i;//sum is key and index is i;
+        //we do all this only if sum==k now the previous indexes has to have a middle array adding up to k kinda makes sense but not all
         }
-       if(preSumMap.find(rem)!=preSumMap.end()){
-        int len=i-preSumMap[rem];
-        maxLen=max(maxLen,len);
     }
-        preSumMap[sum]=i;
-    }
-    return maxLen
+    return maxLen;
 }
 
 int main(){
