@@ -1,3 +1,4 @@
+#include<map>
 #include<iostream>
 #include<vector>
 #include<set>
@@ -424,20 +425,20 @@ void longestSubarayofsumK(vector<int> arr, int k) {
 }
 */
 //brute force approach
-int longestSubarayofsumK(vector<int> arr,int k){
-    //genrate sub arrays using two pointertechniqu
-    int n=arr.size();
-    int sum=0;
-    int len=0;
-        for(int i=0;i<n;i++){
-        sum=0;
-        for(int j=i;j<n;j++){
-            sum+=arr[j];
-        if(sum==17) len=max(len,j-i+1);//if the sum is 17 we store the length of array;
-        }
-    }
-    return len;
-}
+//int longestSubarayofsumK(vector<int> arr,int k){
+//    //genrate sub arrays using two pointertechniqu
+//    int n=arr.size();
+//    int sum=0;
+//    int len=0;
+//        for(int i=0;i<n;i++){
+//        sum=0;
+//        for(int j=i;j<n;j++){
+//            sum+=arr[j];
+//        if(sum==17) len=max(len,j-i+1);//if the sum is 17 we store the length of array;
+//        }
+//    }
+//    return len;
+//}
 
 
 int maximumConsecutive1(int arr[], int size) {
@@ -456,6 +457,22 @@ for (int i = 0; i < size; i++) {
 }
 
 return maxCnt;
+}
+int longestSubarayofsumK(vector<int> a,long long k){
+map<long long ,int> preSumMap;
+int maxLen=0;
+for (int i = 0; i < a.size(); i++) {
+    sum+=a[i];
+    if(sum==k){
+            maxLen=max(maxLen,i+1);//how is this the max? so we checkif the whole arrays adds up to k 
+        }
+       if(preSumMap.find(rem)!=preSumMap.end()){
+        int len=i-preSumMap[rem];
+        maxLen=max(maxLen,len);
+    }
+        preSumMap[sum]=i;
+    }
+    return maxLen
 }
 
 int main(){
