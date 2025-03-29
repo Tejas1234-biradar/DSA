@@ -104,7 +104,7 @@ int stocks(vector<int> a){
         mini=min(a[i],mini);//we check whether curr element is greater than mini i fyes we swap
     }
     return profit;
-}
+}//streak
 
 int main() {
     vector<int> a = {1, 23, 5, 1, 325, 1121, 0, 10};
