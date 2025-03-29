@@ -93,6 +93,18 @@ int kadanealgo(vector <int> a){
     }
     return maxSum;
 }
+int stocks(vector<int> a){
+    int mini=a[0];
+    int n=a.size();
+    int cost=0;
+    int profit=0;
+    for(int i=0;i<n;i++){
+        cost=a[i]-mini;//we keep only tracj of the minimum day when stock price is leasst
+        profit=max(cost,profit);//we maximize the profit;
+        mini=min(a[i],mini);//we check whether curr element is greater than mini i fyes we swap
+    }
+    return profit;
+}
 
 int main() {
     vector<int> a = {1, 23, 5, 1, 325, 1121, 0, 10};
