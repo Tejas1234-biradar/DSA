@@ -104,7 +104,71 @@ int stocks(vector<int> a){
         mini=min(a[i],mini);//we check whether curr element is greater than mini i fyes we swap
     }
     return profit;
-}//streak
+}
+//brute force didnt comeup with this myself dont have a notebook rn so i couldnt write it down
+/*void rearrange(vector<int> &a){
+    int n=a.size()
+    vector<int> pos;
+    vector<int> neg;
+    for(int i<=0;i<n;i++){
+        if(a[i]>0) pos.push_back(a[i]);
+        else neg.push_back(a[i]);
+    }
+    for(int i=0;i<=n2;i++){
+        a[2*i]=pos[i];//positive elements
+        a[2*i+1]=neg[i]
+    }//take the positives in pos array and shove it in neg arr then shove it in big arr using logic since alternatte so positive on 2*i and neg on odd indices
+
+
+}*/
+//optimal approach
+vector<int> rearrangeArray(vector<int> &a){
+vector <int> ans(n,0);
+int posIndex=0;
+int negIndex=1;
+int n=a.size()
+for(int i-0;i<n;i++){
+        if(a[i]<0) {
+            ans[negIndex]=a[i];
+            negIndex+=2;
+        }
+        else {
+            ans[posIndex]=a[i];
+            posIndex+=2;
+        }
+    }
+    return ans;
+}
+
+    void nextPermutation(vector<int>& a) {
+        int n = a.size();
+        int ind = -1;
+
+        // Step 1: Find the breakpoint
+        for (int i = n - 2; i >= 0; i--) {
+            if (a[i] < a[i + 1]) {  // Find the first decreasing element
+                ind = i;
+                break;
+            }
+        }
+
+        // Step 2: If there's a breakpoint, find the next larger element and swap
+        if (ind != -1) {
+            for (int i = n - 1; i > ind; i--) {  // Find the smallest larger element
+                if (a[i] > a[ind]) {
+                    swap(a[i], a[ind]);
+                    break;
+                }
+            }
+        }
+
+        // Step 3: Reverse the suffix
+        reverse(a.begin() + ind + 1, a.end());
+
+        // If there was no breakpoint (ind == -1), this automatically reverses the entire array
+    }
+
+
 
 int main() {
     vector<int> a = {1, 23, 5, 1, 325, 1121, 0, 10};
