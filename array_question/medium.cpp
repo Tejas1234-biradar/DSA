@@ -54,7 +54,7 @@ while(mid<=high){
 //        }
 //    return 0;
 //}
-int morealgo(vector<int> a){
+/*int morealgo(vector<int> a){
   int el = a[0]; // Initialize with the first element
         int cnt = 1;
 
@@ -68,7 +68,9 @@ int morealgo(vector<int> a){
         }
         return el;
     }
-}
+}*/ 
+
+
 //int maxSubarraySum(vector<int>a){
 //    int maxSum=INT_MIN;
 //    int n=a.size();
