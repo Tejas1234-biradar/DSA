@@ -170,6 +170,38 @@ for(int i-0;i<n;i++){
         // If there was no breakpoint (ind == -1), this automatically reverses the entire array
     }
 
+vector<int> spiralOrder(vector<vector<int>> &matrix){
+    int n=matrix.size();
+    int m=matrix(0).size();
+    int left=0,right=m-1;
+    int top=0;bottom=n-1;
+    vector<int> ans;
+    while(top<=bottom&& left<=right){
+        //right movement
+        for(int i=left;i<=right;i++){
+            ans.push_back(matrix[i][top]);
+        }
+        top++;
+        //top right to bottom right
+        for(int i=top;i<=bottom;i++){
+            ans.push_back(matrix[right][i]);
+        }
+        right--;
+        //bottom right to bottom left
+        if(top<=bottom){
+            for(int i=right;i>=left;i--){
+                ans.push_back(matrix[i][bottom]);
+            }
+            bottom--;
+        //bottom left to top left
+            for(int i=bottom;i>=top;i--){
+                ans.push_back(matrix[left][i]);
+            }
+            left++;
+        }
+    }
+    return ans;
+}
 
 
 int main() {
