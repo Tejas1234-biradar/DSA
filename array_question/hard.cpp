@@ -82,4 +82,36 @@ int maximumSubarrayXor(vector<int> a,int k){
     }
 return maxLen;
 }
+vector<int> missingandRepeating(vector<int> a){
+    int n=a.size();
+    long long S=(n*(n+1))/2;
+    long long S2=(n*(n+1)*(2*n+1))/6;
+    long long Sn=0;
+    long long S2n=0;
+    for(int i=0;i<n;i++){
+        Sn+=a[i];
+        S2n+=a[i]*a[i];
 
+    }
+    long long val1=S-Sn;//x-y
+    long long val2=S2-S2n;
+    val2=val2/val1;//x+y
+    long long x=(val1+val2)/2;
+    long long y=x-val1;
+    return {(int)x,(int)y};
+
+}
+//brute force O(n^2) TC
+/*int countInversions(vector<int> a){
+    int  cnt=0;
+    for(int i=0;i<n-1;i++){
+        for(int j=i+1;j<n;j++){
+            if(a[i]>a[j]) cnt+=1;
+        }
+    }
+    return cnt;
+}*/ 
+//A bit more optimal
+int countInversions(vector<int> a){
+     
+}
