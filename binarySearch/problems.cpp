@@ -243,7 +243,7 @@ int findPeak(vector<int> a){
     while(low<=high){
         int mid=(low+high)/2;
         //the edgecase where we are at the start of our array i do a continue since that cant be our findPeak
-        if(mid==0&&){
+        if(mid==0){
             if(a[mid]>a[mid+1]) return a[mid];
             else{
             low=mid+1;
@@ -267,7 +267,7 @@ int findPeak(vector<int> a){
             low=mid+1;
         }
         else high =mid-1;
-    }
+    } 
     return -1;
 }
 
